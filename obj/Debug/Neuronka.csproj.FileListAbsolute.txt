@@ -1,0 +1,9 @@
+D:\Projects\Neuronka\Neuronka\bin\Debug\Neuronka.exe.config
+D:\Projects\Neuronka\Neuronka\bin\Debug\Neuronka.exe
+D:\Projects\Neuronka\Neuronka\bin\Debug\Neuronka.pdb
+D:\Projects\Neuronka\Neuronka\obj\Debug\Neuronka.csprojResolveAssemblyReference.cache
+D:\Projects\Neuronka\Neuronka\obj\Debug\Neuronka.Form1.resources
+D:\Projects\Neuronka\Neuronka\obj\Debug\Neuronka.Properties.Resources.resources
+D:\Projects\Neuronka\Neuronka\obj\Debug\Neuronka.csproj.GenerateResource.Cache
+D:\Projects\Neuronka\Neuronka\obj\Debug\Neuronka.exe
+D:\Projects\Neuronka\Neuronka\obj\Debug\Neuronka.pdb
