@@ -56,7 +56,8 @@ namespace Neuronka
                 _prev_layer = neurons;
                 Random rnd = new Random();
                 _weights = new double[neurons.Length + 1];
-                for (int i = 0; i < neurons.Length; i++)
+                int len = _weights.Length;
+                for (int i = 0; i < len; i++)
                 {
                     neurons[i]._weights[i] = (rnd.NextDouble()) * 2 - 1;
                 }

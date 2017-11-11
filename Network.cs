@@ -21,9 +21,9 @@ namespace Neuronka
 
             set
             {
-                if (_layers.Length >= 2)
+                if (value.Length >= 2)
                 {
-                    if(_layers.Contains(0))
+                    if(value.Contains(0))
                         throw new System.ArgumentException("Parameter should not have 0 in layers", "original");
                     else
                         _layers = value;
@@ -38,6 +38,7 @@ namespace Neuronka
         public Network(int[] layers, double learning_rate)
         {
             Layers = layers;
+            _learn_rate = learning_rate;
             _net = new Neuron[layers.Length][];
 
             try
@@ -71,7 +72,7 @@ namespace Neuronka
             }
         }
 
-        public void Run(double[] inputData)
+        public double Run(double[] inputData)
         {
             try
             {
@@ -86,11 +87,13 @@ namespace Neuronka
                         _net[i][j].Activate();
                     }
                 }
+
             }
             catch(Exception e)
             {
                 Console.WriteLine(e);
             }
+            return _net[Layers.Length - 1][0].Output;
         }
     }
 }
