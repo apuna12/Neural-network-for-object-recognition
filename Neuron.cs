@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Neuronka
 {
@@ -55,11 +56,15 @@ namespace Neuronka
             {
                 _prev_layer = neurons;
                 Random rnd = new Random();
+                double rand;
+                //double[] _vahy = new double[neurons.Length + 1];
                 _weights = new double[neurons.Length + 1];
                 int len = _weights.Length;
-                for (int i = 0; i < len; i++)
+
+                for(int o = 0; o < len; o++)
                 {
-                    neurons[i]._weights[i] = (rnd.NextDouble()) * 2 - 1;
+                    rand = rnd.NextDouble();
+                    _weights[o] = (rand * 2) - 1;
                 }
             }
         }
@@ -71,10 +76,12 @@ namespace Neuronka
             for (int i = 0; i < _prev_layer.Length; i++)
             {
                 sum += _prev_layer[i].Output * _weights[i];
+                
             }
             sum += _weights[_weights.Length-1];
             Input = sum;
             Output = Sigmoid(Input);
+            MessageBox.Show(Output.ToString() + " ciastkovy sum v aktivacii");
         }
 
 

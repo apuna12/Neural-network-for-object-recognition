@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Neuronka
 {
@@ -24,13 +25,13 @@ namespace Neuronka
                 if (value.Length >= 2)
                 {
                     if(value.Contains(0))
-                        throw new System.ArgumentException("Parameter should not have 0 in layers", "original");
+                        MessageBox.Show("Parameter should not have 0 in layers", "original");
                     else
                         _layers = value;
                 }
 
                 else
-                    throw new System.ArgumentException("Parameter should have at least 2 elements", "original");
+                    MessageBox.Show("Parameter should have at least 2 elements", "original");
 
             }
         }
@@ -60,7 +61,9 @@ namespace Neuronka
                         else
                         {
                             _net[i][j] = new Neuron(_net[i - 1]);
+
                         }
+                       // MessageBox.Show("i = " + i.ToString() + " j = " + j.ToString() + " " +  _net[i][j].Output.ToString() + " Network inicializatia, " + layers.Length + " velkost layers");
                     }
 
                 }
@@ -68,32 +71,44 @@ namespace Neuronka
 
             catch(Exception e)
             {
-                Console.WriteLine(e);
+                MessageBox.Show(e.ToString());
             }
         }
 
-        public double Run(double[] inputData)
+        public double[] Run(double[] inputData)
         {
+            double[] ret = new double[_net[Layers.Length - 1].Length];
             try
             {
                 for (int i = 0; i < inputData.Length; i++)
                 {
                     _net[0][i].Output = inputData[i];
                 }
-                for (int i = 0; i < Layers.Length; i++)
+                for (int i = 1; i < Layers.Length; i++)
                 {
                     for (int j = 0; j < Layers[i]; j++)
                     {
                         _net[i][j].Activate();
+                        
                     }
                 }
+
+
+                MessageBox.Show(_net[0][0].ToString() + " Run [0][0] po aktivacii");
 
             }
             catch(Exception e)
             {
-                Console.WriteLine(e);
+                //Console.WriteLine(e);
+                MessageBox.Show(e.ToString());
             }
-            return _net[Layers.Length - 1][0].Output;
+
+            for (int i = 0; i < ret.Length; i++)
+            {
+                ret[i] = _net[Layers.Length - 1][i].Output;
+            }
+
+            return ret;
         }
     }
 }
