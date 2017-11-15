@@ -12,6 +12,7 @@ namespace Neuronka
         private Neuron[][] _net;
         private int[] _layers;
         private double _learn_rate;
+        private short INPUT_LAYER = 0;
 
         public int[] Layers
         {
@@ -24,14 +25,14 @@ namespace Neuronka
             {
                 if (value.Length >= 2)
                 {
-                    if(value.Contains(0))
-                        MessageBox.Show("Parameter should not have 0 in layers", "original");
+                    if (value.Contains(0))
+                        throw new SystemException("Wrong parameter inserted");
                     else
                         _layers = value;
                 }
 
                 else
-                    MessageBox.Show("Parameter should have at least 2 elements", "original");
+                    throw new SystemException("Wrong parameter inserted");
 
             }
         }
@@ -82,7 +83,7 @@ namespace Neuronka
             {
                 for (int i = 0; i < inputData.Length; i++)
                 {
-                    _net[0][i].Output = inputData[i];
+                    _net[INPUT_LAYER][i].Output = inputData[i];
                 }
                 for (int i = 1; i < Layers.Length; i++)
                 {

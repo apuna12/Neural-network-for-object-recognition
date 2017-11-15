@@ -21,7 +21,7 @@ namespace Neuronka
             set
             {
                 if (value < 0 || value > 1)
-                    MessageBox.Show("Parameter out of bound");
+                    throw new SystemException("Wrong parameter inserted");
                 else
                     _output = value;
             }
