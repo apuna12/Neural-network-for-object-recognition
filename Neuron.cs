@@ -7,33 +7,14 @@ using System.Windows.Forms;
 
 namespace Neuronka
 {
-    class Neuron
+    class Neuron:InputNeuron
     {
 
         private double[] _weights;
         private double _input;
-        private double _output;
         Neuron[] _prev_layer;
 
-        public double Output
-        {
-            get
-            {
-                return _output;
-            }
-
-            set
-            {
-                if(value < 0 || value > 1)
-                {
-                    throw new System.ArgumentException("Parameter is out of bond", "original");
-                }
-                else
-                {
-                    _output = value;
-                }
-            }
-        }
+        
 
         public double Input
         {
