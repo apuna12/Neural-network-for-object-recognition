@@ -64,7 +64,6 @@ namespace Neuronka
                             _net[i][j] = new Neuron(_net[i - 1]);
 
                         }
-                       // MessageBox.Show("i = " + i.ToString() + " j = " + j.ToString() + " " +  _net[i][j].Output.ToString() + " Network inicializatia, " + layers.Length + " velkost layers");
                     }
 
                 }
@@ -72,7 +71,7 @@ namespace Neuronka
 
             catch(Exception e)
             {
-                MessageBox.Show(e.ToString());
+                throw new SystemException(e.ToString());
             }
         }
 
@@ -95,13 +94,11 @@ namespace Neuronka
                 }
 
 
-                MessageBox.Show(_net[0][0].ToString() + " Run [0][0] po aktivacii");
 
             }
             catch(Exception e)
             {
-                //Console.WriteLine(e);
-                MessageBox.Show(e.ToString());
+                throw new SystemException(e.ToString());
             }
 
             for (int i = 0; i < ret.Length; i++)

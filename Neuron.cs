@@ -38,7 +38,6 @@ namespace Neuronka
                 _prev_layer = neurons;
                 Random rnd = new Random();
                 double rand;
-                //double[] _vahy = new double[neurons.Length + 1];
                 _weights = new double[neurons.Length + 1];
                 int len = _weights.Length;
 
@@ -62,7 +61,6 @@ namespace Neuronka
             sum += _weights[_weights.Length-1];
             Input = sum;
             Output = Sigmoid(Input);
-            MessageBox.Show(Output.ToString() + " ciastkovy sum v aktivacii");
         }
 
 
