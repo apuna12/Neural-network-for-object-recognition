@@ -37,11 +37,12 @@ namespace Neuronka
             }
         }
 
-        public Network(int[] layers, double learning_rate)
+        public Network(int[] layers, double learning_rate, bool[][] connection_matrix)
         {
             Layers = layers;
             _learn_rate = learning_rate;
             _net = new Neuron[layers.Length][];
+           
 
             try
             {
@@ -61,7 +62,9 @@ namespace Neuronka
 
                         else
                         {
-                            _net[i][j] = new Neuron(_net[i - 1]);
+                            Neuron[][] help = new Neuron[1][];
+                            help[1] = _net[i];
+                            _net[i][j] = new Neuron(help);
 
                         }
                     }

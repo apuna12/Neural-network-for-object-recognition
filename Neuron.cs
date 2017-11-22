@@ -10,9 +10,12 @@ namespace Neuronka
     class Neuron:InputNeuron
     {
 
-        private double[] _weights;
+        private double[][] _weights;
         private double _input;
-        Neuron[] _prev_layer;
+        Neuron[][] _prev_layers;
+        private double _bias;
+        
+        
 
         
 
@@ -31,21 +34,27 @@ namespace Neuronka
             }
         }
 
-        public Neuron(Neuron[] neurons)
+        public Neuron(Neuron[][] neurons)
         { 
             if (neurons != null)
             {
-                _prev_layer = neurons;
+                _prev_layers = neurons;
                 Random rnd = new Random();
                 double rand;
-                _weights = new double[neurons.Length + 1];
-                int len = _weights.Length;
+                _weights = new double[neurons.Length][];
+                _bias = rnd.NextDouble();
 
-                for(int o = 0; o < len; o++)
+                for(int i=0;i<neurons.Length;i++)
                 {
-                    rand = rnd.NextDouble();
-                    _weights[o] = (rand * 2) - 1;
-                }
+                    _weights[i] = new double[neurons[i].Length];
+
+                    for (int o = 0; o < neurons[i].Length; o++)
+                    {
+                        rand = rnd.NextDouble();
+                        _weights[i][o] = (rand * 2) - 1;
+
+                    }
+                }    
             }
         }
 
@@ -53,12 +62,14 @@ namespace Neuronka
         public void Activate()
         {
             double sum = 0;
-            for (int i = 0; i < _prev_layer.Length; i++)
+            for (int i = 0; i < _prev_layers.Length; i++)
             {
-                sum += _prev_layer[i].Output * _weights[i];
-                
+                for (int j = 0; j < _prev_layers[i].Length; j++)
+                {
+                    sum += _prev_layers[i][j].Output * _weights[i][j];
+                }
             }
-            sum += _weights[_weights.Length-1];
+            sum += _bias;
             Input = sum;
             Output = Sigmoid(Input);
         }

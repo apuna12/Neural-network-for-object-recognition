@@ -25,7 +25,14 @@ namespace Neuronka
             int outputNeurons = 1;
             List<int[]> training = new List<int[]>();
             double[] output;
+            bool[][] connection_matrix;
 
+
+
+            connection_matrix = new bool[][]
+            {
+                new bool[] {true, true, false}
+            };
             double[] inputA = { 0, 0, 1, 1 };
             int[] inputB = { 0, 1, 0, 1 };
             int[,] input = { { 0, 0 }, { 0, 1 }, { 1, 0 }, { 1, 1 } };
